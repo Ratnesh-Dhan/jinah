@@ -1,0 +1,13 @@
+pnpm init
+
+# install Type Script
+pnpm add -D typescript tsx @types/node
+
+# Generate tsconfig
+npx tsc --init
+
+# Install MCP SDK
+pnpm add @modelcontextprotocol/sdk
+
+
+
