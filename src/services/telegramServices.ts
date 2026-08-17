@@ -62,4 +62,5 @@ export async function telegramMessageBot(
 export async function getChatId(username: string) {
   if (username.toLocaleLowerCase() === "tirandars") return -949335274;
   else if (username.toLocaleLowerCase() === "paramvir") return 5309277899;
+  else if (username.toLocaleLowerCase() === "sunny da") return 1292012602;
 }
