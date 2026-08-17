@@ -63,4 +63,5 @@ export async function getChatId(username: string) {
   if (username.toLocaleLowerCase() === "tirandars") return -949335274;
   else if (username.toLocaleLowerCase() === "paramvir") return 5309277899;
   else if (username.toLocaleLowerCase() === "sunny da") return 1292012602;
+  else if (username.toLocaleLowerCase() === "shubham") return 8568111405;
 }
