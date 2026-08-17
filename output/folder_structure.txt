@@ -1,5 +1,0 @@
-Project folder structure:
-
-src/
-├── index.ts
-└── server.ts

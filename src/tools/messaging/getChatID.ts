@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { server } from "../../server.js";
+import { getChatId } from "../../services/telegramServices.js";
 
 server.registerTool(
   "get_chat_id",
@@ -11,21 +12,22 @@ server.registerTool(
     }),
   },
   async ({ username }) => {
-    if (username.toLocaleLowerCase() === "tirandars") {
-      return {
-        content: [
-          {
-            type: "text",
-            text: `${-949335274}`,
-          },
-        ],
-      };
-    }
+    // if (username.toLocaleLowerCase() === "tirandars") {
+    //   return {
+    //     content: [
+    //       {
+    //         type: "text",
+    //         text: `${-949335274}`,
+    //       },
+    //     ],
+    //   };
+    // }
+    const id = await getChatId(username);
     return {
       content: [
         {
           type: "text",
-          text: `${-949335274}`,
+          text: `${id}`,
         },
       ],
     };

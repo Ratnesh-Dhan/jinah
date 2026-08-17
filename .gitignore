@@ -6,6 +6,9 @@ dist/
 build/
 out/
 
+# Agent generated files
+
+
 # Local environment variables
 .env
 
