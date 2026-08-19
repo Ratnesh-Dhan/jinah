@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { server } from "../../server.js";
-import { getChatId } from "../../services/telegramServices.js";
+import { getChatId } from "../../services/telegram/telegramServices.js";
 
 server.registerTool(
   "get_chat_id",

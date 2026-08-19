@@ -28,6 +28,7 @@
     "@modelcontextprotocol/sdk": "^1.30.0",
     "dotenv": "^17.4.2",
     "mammoth": "^1.12.1",
+    "telegraf": "^4.16.3",
     "xlsx": "^0.18.5",
     "zod": "^4.4.3"
   }

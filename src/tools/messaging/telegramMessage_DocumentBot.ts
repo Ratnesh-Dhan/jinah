@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { server } from "../../server.js";
-import { telegramMessageBot } from "../../services/telegramServices.js";
+import { telegramMessageBot } from "../../services/telegram/telegramServices.js";
 
 server.registerTool(
   "telegramMessageBot",

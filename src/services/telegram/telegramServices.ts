@@ -1,3 +1,4 @@
+import { Telegraf } from "telegraf";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -65,4 +66,13 @@ export async function getChatId(username: string) {
   else if (username.toLocaleLowerCase() === "sunny da") return 1292012602;
   else if (username.toLocaleLowerCase() === "shubham") return 8568111405;
   else if (username.toLocaleLowerCase() === "sai") return 1377499097;
+}
+
+export async function isNewJoinedMembers() {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) {
+    throw new Error(`TELEGRAM_BOT_TOKEN is not configured`);
+  }
+  const bot = new Telegraf(token);
+  
 }
