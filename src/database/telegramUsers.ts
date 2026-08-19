@@ -1,15 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-
-export interface TelegramUser {
-  chatId: number;
-  userId: number;
-  username?: string;
-  firstName?: string;
-  lastName?: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { TelegramUser } from "../types/telegram.js";
 
 const dbDirectory = path.join(process.cwd(), "db");
 const usersFile = path.join(dbDirectory, "telegramUsers.json");
@@ -24,7 +15,7 @@ async function ensureDatabase() {
   }
 }
 
-async function getUsers(): Promise<TelegramUser[]> {
+export async function getUsers(): Promise<TelegramUser[]> {
   await ensureDatabase();
 
   const data = await fs.readFile(usersFile, "utf-8");

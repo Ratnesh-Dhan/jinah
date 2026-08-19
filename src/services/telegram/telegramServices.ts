@@ -1,6 +1,7 @@
-import { Telegraf } from "telegraf";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { getNewEntry, saveTelegramDB } from "../../database/telgramDB.js";
+import { TelegramDB } from "../../types/telegram.js";
 
 export async function telegramMessageBot(
   chatId: string,
@@ -60,19 +61,33 @@ export async function telegramMessageBot(
   }
 }
 
-export async function getChatId(username: string) {
-  if (username.toLocaleLowerCase() === "tirandars") return -949335274;
-  else if (username.toLocaleLowerCase() === "paramvir") return 5309277899;
-  else if (username.toLocaleLowerCase() === "sunny da") return 1292012602;
-  else if (username.toLocaleLowerCase() === "shubham") return 8568111405;
-  else if (username.toLocaleLowerCase() === "sai") return 1377499097;
+export async function getChatId(username: string): Promise<string> {
+  try {
+    const chatID = await getChatId(username);
+    return chatID.toString();
+  } catch (error) {
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong at db side.",
+    );
+  }
 }
 
-export async function isNewJoinedMembers() {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  if (!token) {
-    throw new Error(`TELEGRAM_BOT_TOKEN is not configured`);
-  }
-  const bot = new Telegraf(token);
-  
+export async function getNewTelegramUsers() {
+  const users = await getNewEntry();
+  return users;
 }
+
+export async function updateTelegramDB(newEntries: TelegramDB[]) {
+  const message = await saveTelegramDB(newEntries);
+  return message === "success"
+    ? "success"
+    : "unable to save in DB because something went wrong";
+}
+
+// if (username.toLocaleLowerCase() === "tirandars") return -949335274;
+// else if (username.toLocaleLowerCase() === "paramvir") return 5309277899;
+// else if (username.toLocaleLowerCase() === "sunny da") return 1292012602;
+// else if (username.toLocaleLowerCase() === "shubham") return 8568111405;
+// else if (username.toLocaleLowerCase() === "sai") return 1377499097;
