@@ -12,16 +12,6 @@ server.registerTool(
     }),
   },
   async ({ username }) => {
-    // if (username.toLocaleLowerCase() === "tirandars") {
-    //   return {
-    //     content: [
-    //       {
-    //         type: "text",
-    //         text: `${-949335274}`,
-    //       },
-    //     ],
-    //   };
-    // }
     const id = await getChatId(username);
     return {
       content: [
