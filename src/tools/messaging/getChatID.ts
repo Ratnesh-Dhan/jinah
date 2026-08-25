@@ -12,14 +12,25 @@ server.registerTool(
     }),
   },
   async ({ username }) => {
-    const id = await getChatId(username);
-    return {
-      content: [
-        {
-          type: "text",
-          text: `${id}`,
-        },
-      ],
-    };
+    try {
+      const id = await getChatId(username);
+      return {
+        content: [
+          {
+            type: "text",
+            text: `${id}`,
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Failed to get chat id: ${error instanceof Error ? error.message : String(error)}`,
+          },
+        ],
+      };
+    }
   },
 );

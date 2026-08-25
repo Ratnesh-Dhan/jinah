@@ -1,6 +1,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getNewEntry, saveTelegramDB } from "../../database/telgramDB.js";
+import {
+  getNewEntry,
+  saveTelegramDB,
+  getChatIdFromDB,
+} from "../../database/telgramDB.js";
 import { TelegramDB } from "../../types/telegram.js";
 
 export async function telegramMessageBot(
@@ -63,7 +67,7 @@ export async function telegramMessageBot(
 
 export async function getChatId(username: string): Promise<string> {
   try {
-    const chatID = await getChatId(username);
+    const chatID = await getChatIdFromDB(username);
     return chatID.toString();
   } catch (error) {
     throw new Error(
