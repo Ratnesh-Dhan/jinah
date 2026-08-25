@@ -50,9 +50,11 @@ export async function saveTelegramDB(newEntries: TelegramDB[]) {
   }
 }
 
-export async function getChatId(name: string): Promise<number> {
+export async function getChatIdFromDB(name: string): Promise<number> {
   const db = await getDB();
-  const chatId = db.find((item) => item.name === name)?.chatId;
+  const chatId = db.find(
+    (item) => item.name.toLowerCase() === name.toLowerCase(),
+  )?.chatId;
   if (chatId) {
     return chatId;
   } else {
