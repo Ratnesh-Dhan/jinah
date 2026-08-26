@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { createFile } from "../../services/filesystemServices.js";
+import { createTextTypeFile } from "../../services/filesystemServices.js";
 import { server } from "../../server.js";
 
 server.registerTool(
-  "createFile",
+  "createTextTypeFile",
   {
     description:
-      "Creates a file at the specified location with the given content. Automatically creates parent directories if they don't exist.",
+      "Creates a file of type (txt, md, json, csv, py, js, ts, html, css, xml, yaml, yml) at the specified location with the given content. Automatically creates parent directories if they don't exist.",
     inputSchema: z.object({
       filePath: z.string(),
       content: z.string(),
@@ -14,7 +14,7 @@ server.registerTool(
   },
   async ({ filePath, content }) => {
     try {
-      const safePath = await createFile(filePath, content);
+      const safePath = await createTextTypeFile(filePath, content);
       return {
         content: [
           {

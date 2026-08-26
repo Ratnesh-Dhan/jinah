@@ -23,5 +23,21 @@
     "firstName": "Angel",
     "createdAt": "2026-08-24T13:12:57.036Z",
     "updatedAt": "2026-08-24T13:12:57.036Z"
+  },
+  {
+    "chatId": 6217038941,
+    "userId": 6217038941,
+    "firstName": "Kanika",
+    "lastName": "Maity",
+    "createdAt": "2026-08-26T07:37:48.448Z",
+    "updatedAt": "2026-08-26T07:37:48.448Z"
+  },
+  {
+    "chatId": 881642518,
+    "userId": 881642518,
+    "username": "Raza7667",
+    "firstName": "Raza7667",
+    "createdAt": "2026-08-26T19:19:50.228Z",
+    "updatedAt": "2026-08-26T19:54:39.396Z"
   }
 ]

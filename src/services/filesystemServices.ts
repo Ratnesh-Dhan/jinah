@@ -3,6 +3,8 @@ import path from "node:path";
 import * as XLSX from "xlsx";
 import mammoth from "mammoth";
 import { ModifyOperation } from "../types/fileSystem.js";
+import { Document, Packer, Paragraph } from "docx";
+import ExcelJS from "exceljs";
 
 export async function modifyFile(
   filePath: string,
@@ -65,24 +67,27 @@ export async function modifyFile(
   return safePath;
 }
 
-export async function createFile(filePath: string, content: string) {
+export async function createTextTypeFile(filePath: string, content: string) {
   const safePath = path.resolve(filePath);
-  if (
-    safePath.toLowerCase().endsWith(".txt") ||
-    safePath.toLowerCase().endsWith(".md") ||
-    safePath.toLowerCase().endsWith(".json") ||
-    safePath.toLowerCase().endsWith(".csv")
-  ) {
+  const TEXT_ENXTENSIONS = [
+    ".txt",
+    ".md",
+    ".json",
+    ".csv",
+    ".py",
+    ".js",
+    ".ts",
+    ".html",
+    ".css",
+    ".xml",
+    ".yaml",
+    ".yml",
+  ];
+  if (TEXT_ENXTENSIONS.some((ext) => safePath.toLowerCase().endsWith(ext))) {
     await fs.mkdir(path.dirname(safePath), { recursive: true });
     await fs.writeFile(safePath, content, "utf-8");
-  } else if (
-    safePath.toLowerCase().endsWith(".xlsx") ||
-    safePath.toLowerCase().endsWith(".docx")
-  ) {
-    await fs.mkdir(path.dirname(safePath), { recursive: true });
-    await fs.writeFile(safePath, content);
   } else {
-    throw new Error("File type not supported");
+    throw new Error(`File type not supported: ${safePath}`);
   }
   return safePath;
 }
@@ -148,4 +153,43 @@ export async function listDirectory(dirPath: string): Promise<string[]> {
   } catch (error) {
     throw new Error("Path does not exist or is not a directory");
   }
+}
+
+export async function createDocx(filePath: string, content: string) {
+  const doc = new Document({
+    sections: [
+      {
+        children: content
+          .split("\n")
+          .map((line) => new Paragraph({ text: line })),
+      },
+    ],
+  });
+
+  const buffer = await Packer.toBuffer(doc);
+
+  await fs.mkdir(path.dirname(filePath), {
+    recursive: true,
+  });
+
+  await fs.writeFile(filePath, buffer);
+
+  return filePath;
+}
+
+export async function createXlsx(filePath: string, data: string[][]) {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet("Sheet1");
+
+  for (const row of data) {
+    worksheet.addRow(row);
+  }
+
+  await fs.mkdir(path.dirname(filePath), {
+    recursive: true,
+  });
+
+  await workbook.xlsx.writeFile(filePath);
+
+  return filePath;
 }

@@ -9,6 +9,8 @@ import "./tools/filesystem/listDirectory.js";
 import "./tools/filesystem/readFile.js";
 import "./tools/filesystem/createFile.js";
 import "./tools/filesystem/modifyFile.js";
+import "./tools/filesystem/createDocx.js";
+import "./tools/filesystem/createXlxs.js";
 import "./tools/messaging/getChatID.js";
 import "./tools/messaging/telegramMessage_DocumentBot.js";
 import "./tools/messaging/getNewTelegramUsers.js";
