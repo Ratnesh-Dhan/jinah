@@ -97,7 +97,22 @@ export async function readFile(filePath: string): Promise<string> {
   const ext = path.extname(safePath).toLowerCase();
 
   // Text files
-  if ([".txt", ".md", ".json", ".csv"].includes(ext)) {
+  if (
+    [
+      ".txt",
+      ".md",
+      ".json",
+      ".csv",
+      ".py",
+      ".js",
+      ".ts",
+      ".html",
+      ".css",
+      ".xml",
+      ".yaml",
+      ".yml",
+    ].includes(ext)
+  ) {
     return await fs.readFile(safePath, "utf-8");
   }
 

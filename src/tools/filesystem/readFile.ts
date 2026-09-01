@@ -7,7 +7,7 @@ server.registerTool(
   {
     title: "Read File",
     description:
-      "Reads a supported file. Supports text files (.txt, .md, .json, .csv) and binary files (.xlsx, .docx).",
+      "Reads a supported file. Supports text files (txt, md, json, csv, py, js, ts, html, css, xml, yaml, yml) and binary files (.xlsx, .docx).",
     inputSchema: z.object({
       filePath: z.string(),
     }),
@@ -15,17 +15,6 @@ server.registerTool(
   async ({ filePath }) => {
     try {
       const result = await readFile(filePath);
-
-      //   if (Buffer.isBuffer(result)) {
-      //     return {
-      //       content: [
-      //         {
-      //           type: "text",
-      //           text: `Successfully read binary file: ${filePath}\nSize: ${result.length} bytes`,
-      //         },
-      //       ],
-      //     };
-      //   }
 
       return {
         content: [
