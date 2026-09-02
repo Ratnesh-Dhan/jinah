@@ -8,7 +8,7 @@ server.registerTool(
   {
     title: "Search Files",
     description:
-      "Searches the local filesystem for files matching a specific name pattern. Use this to find where a file is located on the PC.",
+      "Searches the local filesystem recursively for files matching a filename pattern. Searches all nested folders under the specified directory. Supports wildcards such as '*.pdf', 'report_*.docx', or 'results*.xlsx'. Inaccessible or protected directories are skipped automatically.",
     inputSchema: z.object({
       query: z
         .string()
@@ -33,7 +33,25 @@ server.registerTool(
         onlyFiles: true,
         absolute: true,
         caseSensitiveMatch: false,
-        ignore: ["**/node_modules/**", "**/.git/**"],
+        suppressErrors: true,
+        followSymbolicLinks: true,
+        throwErrorOnBrokenSymbolicLink: true,
+        ignore: [
+          "**/node_modules/**",
+          "**/.git/**",
+
+          // Windows system/protected directories
+          "**/System Volume Information/**",
+          "**/$Recycle.Bin/**",
+          "**/Recovery/**",
+
+          // Common application/build junk
+          "**/.cache/**",
+          "**/.next/**",
+          "**/dist/**",
+          "**/build/**",
+          "**/coverage/**",
+        ],
       }); // Ignore junk folders!
 
       if (files.length === 0) {

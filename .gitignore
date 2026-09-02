@@ -8,7 +8,17 @@ out/
 
 # Agent generated files
 output/
+*.txt
 
+*.pdf
+*.docx
+*.doc
+*.xls
+*.xlsx
+*.csv
+
+*.xml
+*.html
 # Local environment variables
 .env
 

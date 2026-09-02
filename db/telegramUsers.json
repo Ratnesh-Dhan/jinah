@@ -5,7 +5,7 @@
     "firstName": "Kamal",
     "lastName": "Kumar",
     "createdAt": "2026-08-19T19:59:20.361Z",
-    "updatedAt": "2026-08-19T19:59:20.361Z"
+    "updatedAt": "2026-09-02T09:12:40.635Z"
   },
   {
     "chatId": 1080341081,
@@ -47,5 +47,14 @@
     "lastName": "Singha",
     "createdAt": "2026-08-27T11:47:39.869Z",
     "updatedAt": "2026-08-27T11:47:39.869Z"
+  },
+  {
+    "chatId": 5380798058,
+    "userId": 5380798058,
+    "username": "Vikingheroreturn",
+    "firstName": "Aryan",
+    "lastName": "Singh",
+    "createdAt": "2026-09-02T08:22:41.315Z",
+    "updatedAt": "2026-09-02T08:30:46.007Z"
   }
 ]
