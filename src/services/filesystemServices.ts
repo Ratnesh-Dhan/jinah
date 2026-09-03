@@ -5,6 +5,7 @@ import mammoth from "mammoth";
 import { ModifyOperation } from "../types/fileSystem.js";
 import { Document, Packer, Paragraph } from "docx";
 import ExcelJS from "exceljs";
+import { isBinaryFile } from "../utils/support.js";
 
 export async function modifyFile(
   filePath: string,
@@ -154,6 +155,11 @@ export async function readFile(filePath: string): Promise<string> {
     });
 
     return result.value;
+  }
+
+  const isBinary = await isBinaryFile(safePath);
+  if (!isBinary) {
+    return await fs.readFile(safePath, "utf-8");
   }
 
   throw new Error(`File type not supported: ${ext}`);
