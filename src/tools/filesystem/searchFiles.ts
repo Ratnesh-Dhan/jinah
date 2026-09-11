@@ -8,7 +8,7 @@ server.registerTool(
   {
     title: "Search Files",
     description:
-      "Searches the local filesystem recursively for files matching a filename pattern. Searches all nested folders under the specified directory. Supports wildcards such as '*.pdf', 'report_*.docx', or 'results*.xlsx'. Inaccessible or protected directories are skipped automatically.",
+      "Searches the local filesystem recursively for files matching a filename pattern. Use this ONLY when the user wants to find files or filenames on the filesystem. This tool is NOT for searching database records, Telegram contacts, Telegram usernames, Telegram chat IDs, or other application data.",
     inputSchema: z.object({
       query: z
         .string()
