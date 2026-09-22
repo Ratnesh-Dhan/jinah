@@ -18,7 +18,9 @@ server.registerTool(
         content: [
           {
             type: "text",
-            text: `Successfully listed directory: ${dirPath}\nFiles: ${result.join(", ")}`,
+            text: `Successfully listed directory: ${dirPath}
+            Direcotries: ${result.directories.join(", ")}
+            Files: ${result.files.join(", ")}`,
           },
         ],
       };

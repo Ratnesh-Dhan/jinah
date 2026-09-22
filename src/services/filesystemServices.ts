@@ -169,12 +169,21 @@ export async function readFile(filePath: string): Promise<string> {
   throw new Error(`File type not supported: ${ext}`);
 }
 
-export async function listDirectory(dirPath: string): Promise<string[]> {
+export async function listDirectory(
+  dirPath: string,
+): Promise<{ directories: string[]; files: string[] }> {
   try {
     const safePath = path.resolve(dirPath);
     await fs.access(safePath, fs.constants.R_OK);
-    const files = await fs.readdir(safePath);
-    return files;
+    const entries = await fs.readdir(safePath, { withFileTypes: true });
+    const folders = entries
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name);
+    const files = entries
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name);
+
+    return { directories: folders, files: files };
   } catch (error) {
     throw new Error("Path does not exist or is not a directory");
   }
