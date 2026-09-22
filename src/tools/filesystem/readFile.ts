@@ -7,7 +7,7 @@ server.registerTool(
   {
     title: "Read File",
     description:
-      "Reads a supported file. Supports text files (txt, md, json, csv, py, js, ts, html, css, xml, yaml, yml) and binary files (.xlsx, .docx).",
+      "Reads a supported file. Supports text files (txt, md, json, csv, py, js, ts, jsx, tsx, html, css, xml, yaml, yml) and binary files (.xlsx, .docx).",
     inputSchema: z.object({
       filePath: z.string(),
     }),
